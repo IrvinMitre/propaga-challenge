@@ -111,6 +111,42 @@ Every successful transition creates an immutable audit record containing the act
 - pnpm 10.34.5.
 - Docker Desktop
 
+### Local PostgreSQL
+
+Create a local environment file from the development-only example values:
+
+```bash
+cp .env.example .env
+```
+
+Start PostgreSQL:
+
+```bash
+docker compose up -d
+```
+
+Check the service status:
+
+```bash
+docker compose ps
+```
+
+Follow PostgreSQL logs:
+
+```bash
+docker compose logs -f postgres
+```
+
+Stop the service:
+
+```bash
+docker compose down
+```
+
+PostgreSQL runs on `localhost:5432` by default. Data is persisted in the named `postgres_data` volume.
+
+`docker compose down` stops the service without deleting the volume. `docker compose down -v` also deletes the local database data.
+
 ## Database Design
 
 The application stores the current state of each disbursement separately from its audit history.
