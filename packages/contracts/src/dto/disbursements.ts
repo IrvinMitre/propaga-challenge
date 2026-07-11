@@ -1,15 +1,7 @@
-import type { CursorPage } from './api';
-
-export enum DisbursementStatus {
-  Pending = 'pending',
-  Approved = 'approved',
-  Rejected = 'rejected',
-}
-
-export enum DisbursementAction {
-  Approved = 'approved',
-  Rejected = 'rejected',
-}
+import type { z } from 'zod';
+import type { CursorPage } from '../api';
+import type { DisbursementAction, DisbursementStatus } from '../enums';
+import type { RejectDisbursementRequestSchema } from '../schemas';
 
 export type DisbursementDto = {
   id: string;
@@ -48,6 +40,6 @@ export type ListDisbursementsQuery = {
 
 export type ListDisbursementsResponse = CursorPage<DisbursementDto>;
 
-export type RejectDisbursementRequest = {
-  reason: string;
-};
+export type RejectDisbursementDto = z.infer<
+  typeof RejectDisbursementRequestSchema
+>;
