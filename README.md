@@ -81,8 +81,7 @@ Responsibilities:
 State-changing operations use optimistic updates and restore the previous state when the backend rejects an operation.
 
 ## Shared Contracts
-The `packages/contracts` package contains only the public communication contract between the backend and frontend.
-
+The `packages/contracts` package contains the public communication contract between the backend and frontend.
 
 ## Domain Design
 A disbursement has three possible states:
