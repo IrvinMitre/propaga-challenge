@@ -19,6 +19,7 @@ export type ListDisbursementsResult = {
 
 export type ApplyDisbursementDecisionInput = {
   id: string;
+  expectedStatus: DisbursementStatus;
   nextStatus: DisbursementStatus;
   decidedBy: string;
   decidedAt: Date;

@@ -39,6 +39,7 @@ export class ApproveDisbursementUseCase {
 
     return this.repository.applyDecision({
       id: input.id,
+      expectedStatus: disbursement.status,
       nextStatus: transition.nextStatus,
       decidedBy: input.actorId,
       decidedAt: new Date(),
