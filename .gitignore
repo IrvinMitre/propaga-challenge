@@ -1,14 +1,28 @@
+# Dependencies
 node_modules
 .pnpm-store
 
+# Environment
 .env
 .env.*
 !.env.example
 
+# Build outputs
 dist
 build
 .next
+out
 coverage
 
-.DS_Store
+# TypeScript
+*.tsbuildinfo
+
+# Logs
 *.log
+
+# IDE
+.vscode
+.idea
+
+# Operating system
+.DS_Store
