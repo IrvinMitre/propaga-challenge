@@ -1,5 +1,8 @@
 {
   "name": "propaga-challenge",
   "private": true,
-  "packageManager": "pnpm@10.34.5"
+  "packageManager": "pnpm@10.34.5",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
 }
