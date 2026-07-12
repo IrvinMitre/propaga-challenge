@@ -16,6 +16,7 @@ import {
   type ApiSuccess,
   type DisbursementDto,
   type ListDisbursementsResponse,
+  type SeedDisbursementsResult,
 } from '@propaga/contracts';
 import type { Disbursement } from '../../domain';
 import {
@@ -23,6 +24,7 @@ import {
   GetDisbursementUseCase,
   ListDisbursementsUseCase,
   RejectDisbursementUseCase,
+  SeedDisbursementsUseCase,
 } from '../../application/use-cases';
 import type { ListDisbursementsFilters } from '../../application/ports';
 import { ListDisbursementsQueryDto, RejectDisbursementDto } from './dto';
@@ -36,6 +38,7 @@ export class DisbursementsController {
     private readonly getDisbursementUseCase: GetDisbursementUseCase,
     private readonly approveDisbursementUseCase: ApproveDisbursementUseCase,
     private readonly rejectDisbursementUseCase: RejectDisbursementUseCase,
+    private readonly seedDisbursementsUseCase: SeedDisbursementsUseCase,
   ) {}
 
   @Get()
@@ -60,6 +63,15 @@ export class DisbursementsController {
 
     return {
       data: toDisbursementDto(disbursement),
+    };
+  }
+
+  @Post('seed')
+  async seed(): Promise<ApiSuccess<SeedDisbursementsResult>> {
+    const result = await this.seedDisbursementsUseCase.execute();
+
+    return {
+      data: result,
     };
   }
 

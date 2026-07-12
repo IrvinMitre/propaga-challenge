@@ -1,7 +1,7 @@
 import type { z } from 'zod';
-import type { CursorPage } from '../api';
-import type { DisbursementAction, DisbursementStatus } from '../enums';
-import type { RejectDisbursementRequestSchema } from '../schemas';
+import type { CursorPage } from '../api.js';
+import type { DisbursementAction, DisbursementStatus } from '../enums/index.js';
+import type { RejectDisbursementRequestSchema } from '../schemas/index.js';
 
 export type DisbursementDto = {
   id: string;
@@ -43,3 +43,7 @@ export type ListDisbursementsResponse = CursorPage<DisbursementDto>;
 export type RejectDisbursementDto = z.infer<
   typeof RejectDisbursementRequestSchema
 >;
+
+export type SeedDisbursementsResult = {
+  inserted: number;
+};

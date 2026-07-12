@@ -1,5 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { DisbursementStatus } from '@propaga/contracts';
+import {
+  DisbursementStatus,
+  type SeedDisbursementsResult,
+} from '@propaga/contracts';
 import type { Disbursement } from '../../../domain';
 import type {
   ApplyDisbursementDecisionInput,
@@ -21,6 +24,7 @@ import {
   toDomainDisbursementStatus,
   toPrismaDisbursementStatus,
 } from './disbursement.mapper';
+import { DISBURSEMENT_SEED } from '../../../seed/disbursement.seed';
 
 @Injectable()
 export class PrismaDisbursementRepository implements DisbursementRepository {
@@ -149,6 +153,17 @@ export class PrismaDisbursementRepository implements DisbursementRepository {
     });
 
     return toDomainDisbursement(disbursement);
+  }
+
+  async seed(): Promise<SeedDisbursementsResult> {
+    const result = await this.prisma.disbursement.createMany({
+      data: DISBURSEMENT_SEED,
+      skipDuplicates: true,
+    });
+
+    return {
+      inserted: result.count,
+    };
   }
 }
 

@@ -1,4 +1,7 @@
-import type { DisbursementStatus } from '@propaga/contracts';
+import type {
+  DisbursementStatus,
+  SeedDisbursementsResult,
+} from '@propaga/contracts';
 import type { Disbursement } from '../../domain';
 
 export const DISBURSEMENT_REPOSITORY = Symbol('DISBURSEMENT_REPOSITORY');
@@ -32,4 +35,6 @@ export interface DisbursementRepository {
   findMany(filters: ListDisbursementsFilters): Promise<ListDisbursementsResult>;
 
   applyDecision(input: ApplyDisbursementDecisionInput): Promise<Disbursement>;
+
+  seed(): Promise<SeedDisbursementsResult>;
 }

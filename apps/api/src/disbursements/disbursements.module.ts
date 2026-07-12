@@ -9,6 +9,7 @@ import {
   GetDisbursementUseCase,
   ListDisbursementsUseCase,
   RejectDisbursementUseCase,
+  SeedDisbursementsUseCase,
 } from './application/use-cases';
 import { DisbursementsController } from './infrastructure/http';
 import { PrismaDisbursementRepository } from './infrastructure/persistence/prisma';
@@ -44,6 +45,12 @@ import { PrismaDisbursementRepository } from './infrastructure/persistence/prism
       provide: ListDisbursementsUseCase,
       useFactory: (repository: DisbursementRepository) =>
         new ListDisbursementsUseCase(repository),
+      inject: [DISBURSEMENT_REPOSITORY],
+    },
+    {
+      provide: SeedDisbursementsUseCase,
+      useFactory: (repository: DisbursementRepository) =>
+        new SeedDisbursementsUseCase(repository),
       inject: [DISBURSEMENT_REPOSITORY],
     },
   ],
